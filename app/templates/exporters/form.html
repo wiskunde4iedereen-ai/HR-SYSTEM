@@ -1,0 +1,33 @@
+{% extends "layouts/base.html" %}
+{% block title %}{{ 'تعديل' if exporter else 'مصدر جديد' }}{% endblock %}
+{% block content %}
+<h4 class="mb-3">{{ 'تعديل المصدر' if exporter else 'مصدر جديد' }}</h4>
+<form method="post">
+  <div class="mb-2">
+    <label>اسم الشركة</label>
+    <input name="company_name" class="form-control" value="{{ exporter.company_name if exporter else '' }}" required>
+  </div>
+  <div class="mb-2">
+    <label>اسم المالك</label>
+    <input name="owner_name" class="form-control" value="{{ exporter.owner_name if exporter else '' }}" required>
+  </div>
+  <div class="mb-2">
+    <label>البريد الإلكتروني</label>
+    <input name="email" type="email" class="form-control" value="{{ exporter.email if exporter else '' }}" required>
+  </div>
+  <div class="mb-2">
+    <label>الهاتف</label>
+    <input name="phone" class="form-control" value="{{ exporter.phone if exporter else '' }}">
+  </div>
+  <div class="mb-2">
+    <label>السجل التجاري</label>
+    <input name="commercial_registry" class="form-control" value="{{ exporter.commercial_registry if exporter else '' }}">
+  </div>
+  <div class="mb-2">
+    <label>العنوان</label>
+    <textarea name="address" class="form-control">{{ exporter.address if exporter else '' }}</textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">حفظ</button>
+  <a href="/exporters" class="btn btn-secondary">إلغاء</a>
+</form>
+{% endblock %}

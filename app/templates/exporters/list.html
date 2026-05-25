@@ -1,0 +1,37 @@
+{% extends "layouts/base.html" %}
+{% block title %}المصدرون{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h4 class="mb-0">المصدرون</h4>
+  <a href="/exporters/create" class="btn btn-primary">+ مصدر جديد</a>
+</div>
+<form method="get" class="mb-3">
+  <div class="input-group">
+    <input type="text" name="q" class="form-control" placeholder="بحث..." value="{{ q }}">
+    <button class="btn btn-outline-secondary" type="submit">بحث</button>
+  </div>
+</form>
+<table class="table table-striped">
+  <thead><tr><th>#</th><th>الشركة</th><th>المالك</th><th>البريد</th><th>الهاتف</th><th></th></tr></thead>
+  <tbody>
+    {% for e in exporters %}
+    <tr>
+      <td>{{ e.id }}</td>
+      <td>{{ e.company_name }}</td>
+      <td>{{ e.owner_name }}</td>
+      <td>{{ e.email }}</td>
+      <td>{{ e.phone }}</td>
+      <td>
+        <a href="/exporters/{{ e.id }}/edit" class="btn btn-sm btn-warning">تعديل</a>
+        <form method="post" action="/exporters/{{ e.id }}/delete" style="display:inline" onsubmit="return confirm('حذف هذا المصدر؟')">
+          <button class="btn btn-sm btn-danger">حذف</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+    {% if not exporters %}
+    <tr><td colspan="6" class="text-center">لا يوجد مصدرون</td></tr>
+    {% endif %}
+  </tbody>
+</table>
+{% endblock %}

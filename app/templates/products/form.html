@@ -1,0 +1,38 @@
+{% extends "layouts/base.html" %}
+{% block title %}{{ 'تعديل' if product else 'منتج جديد' }}{% endblock %}
+{% block content %}
+<h4 class="mb-3">{{ 'تعديل المنتج' if product else 'منتج جديد' }}</h4>
+<form method="post">
+  <div class="mb-2">
+    <label>اسم المنتج</label>
+    <input name="name" class="form-control" value="{{ product.name if product else '' }}" required>
+  </div>
+  <div class="mb-2">
+    <label>التصنيف</label>
+    <input name="category" class="form-control" value="{{ product.category if product else '' }}">
+  </div>
+  <div class="mb-2">
+    <label>رمز HS</label>
+    <input name="hs_code" class="form-control" value="{{ product.hs_code if product else '' }}">
+  </div>
+  <div class="mb-2">
+    <label>المنشأ</label>
+    <input name="origin" class="form-control" value="{{ product.origin if product else '' }}">
+  </div>
+  <div class="mb-2">
+    <label>الوحدة</label>
+    <input name="unit" class="form-control" value="{{ product.unit if product else '' }}">
+  </div>
+  <div class="mb-2">
+    <label>المصدر</label>
+    <select name="exporter_id" class="form-control" required>
+      <option value="">اختر...</option>
+      {% for e in exporters %}
+      <option value="{{ e.id }}" {% if product and product.exporter_id == e.id %}selected{% endif %}>{{ e.company_name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">حفظ</button>
+  <a href="/products" class="btn btn-secondary">إلغاء</a>
+</form>
+{% endblock %}

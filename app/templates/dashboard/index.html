@@ -1,0 +1,74 @@
+{% extends "layouts/base.html" %}
+{% block title %}لوحة التحكم - الإدارة{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2>مرحباً، {{ user.name }}</h2>
+        <p class="text-muted">
+            {% if user.role == "admin" %}مدير النظام
+            {% elif user.role == "developer" %}مطور
+            {% elif user.role == "employee" %}موظف هيئة
+            {% elif user.role == "exporter" %}مصدر
+            {% elif user.role == "importer" %}مستورد
+            {% endif %}
+            <span class="badge bg-syria-gold me-2">لوحة الإدارة</span>
+        </p>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card bg-syria-green text-white mb-3">
+            <div class="card-body text-center">
+                <h5 class="card-title"><i class="bi bi-people"></i> المصدرين</h5>
+                <h2>{{ stats.exporters_count }}</h2>
+                <a href="/exporters" class="text-white small">عرض التفاصيل</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-syria-black text-white mb-3">
+            <div class="card-body text-center">
+                <h5 class="card-title"><i class="bi bi-box"></i> المنتجات</h5>
+                <h2>{{ stats.products_count }}</h2>
+                <a href="/products" class="text-white small">عرض التفاصيل</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-syria-gold text-white mb-3">
+            <div class="card-body text-center">
+                <h5 class="card-title"><i class="bi bi-globe"></i> الأسواق</h5>
+                <h2>{{ stats.markets_count }}</h2>
+                <a href="/markets" class="text-white small">عرض التفاصيل</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-syria-green text-white mb-3">
+            <div class="card-body text-center">
+                <h5 class="card-title"><i class="bi bi-file-earmark-text"></i> التراخيص</h5>
+                <h2>{{ stats.licenses_count }}</h2>
+                <a href="/licenses" class="text-white small">عرض التفاصيل</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-syria-black text-white mb-3">
+            <div class="card-body text-center">
+                <h5 class="card-title"><i class="bi bi-currency-exchange"></i> المالية</h5>
+                <h2>{{ stats.finance_count }}</h2>
+                <a href="/finance" class="text-white small">عرض التفاصيل</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-syria-gold text-white mb-3">
+            <div class="card-body text-center">
+                <h5 class="card-title"><i class="bi bi-folder"></i> المستندات</h5>
+                <h2>{{ stats.documents_count }}</h2>
+                <a href="/documents" class="text-white small">عرض التفاصيل</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

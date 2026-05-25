@@ -1,0 +1,80 @@
+{% extends "layouts/base.html" %}
+{% block title %}التقارير{% endblock %}
+{% block content %}
+<h4 class="mb-3">التقارير والإحصائيات</h4>
+
+<div class="row mb-4">
+  <div class="col-md-3">
+    <div class="card text-white bg-primary">
+      <div class="card-body text-center">
+        <h6>إجمالي المصدرين</h6>
+        <h3>{{ total_exporters }}</h3>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card text-white bg-success">
+      <div class="card-body text-center">
+        <h6>إجمالي المنتجات</h6>
+        <h3>{{ total_products }}</h3>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card text-white bg-info">
+      <div class="card-body text-center">
+        <h6>إجمالي التراخيص</h6>
+        <h3>{{ total_licenses }}</h3>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card text-white bg-warning">
+      <div class="card-body text-center">
+        <h6>قيد الانتظار</h6>
+        <h3>{{ pending_licenses }}</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col-md-4">
+    <div class="card text-white bg-success">
+      <div class="card-body text-center">
+        <h6>تراخيص معتمدة</h6>
+        <h3>{{ approved_licenses }}</h3>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-white bg-danger">
+      <div class="card-body text-center">
+        <h6>إجمالي الرسوم</h6>
+        <h3>{{ total_fees }}</h3>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-white bg-secondary">
+      <div class="card-body text-center">
+        <h6>المدفوع</h6>
+        <h3>{{ paid_fees }}</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h5 class="mb-3">تصدير البيانات</h5>
+<div class="list-group">
+  <a href="/reports/export/csv?entity=licenses" class="list-group-item list-group-item-action">
+    <i class="bi bi-download"></i> تصدير التراخيص (CSV)
+  </a>
+  <a href="/reports/export/csv?entity=finance" class="list-group-item list-group-item-action">
+    <i class="bi bi-download"></i> تصدير المالية (CSV)
+  </a>
+  <a href="/reports/export/csv?entity=exporters" class="list-group-item list-group-item-action">
+    <i class="bi bi-download"></i> تصدير المصدرين (CSV)
+  </a>
+</div>
+{% endblock %}

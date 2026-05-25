@@ -1,0 +1,83 @@
+{% extends "layouts/base.html" %}
+{% block title %}لوحة الموظف{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2>مرحباً، {{ user.name }}</h2>
+        <p class="text-muted">
+            موظف هيئة
+            <span class="badge bg-syria-gold me-2">لوحة الموظف</span>
+        </p>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card bg-syria-green text-white">
+            <div class="card-body">
+                <h5 class="card-title">معلومات الموظف</h5>
+                <p class="mb-1"><strong>الاسم الكامل:</strong> {{ user.name }}</p>
+                <p class="mb-1"><strong>البريد الإلكتروني:</strong> {{ user.email }}</p>
+                <p class="mb-1"><strong>الدور:</strong> 
+                    {% if user.role == "admin" %}مدير النظام
+                    {% elif user.role == "developer" %}مطور
+                    {% elif user.role == "employee" %}موظف هيئة
+                    {% elif user.role == "exporter" %}مصدر
+                    {% elif user.role == "importer" %}مستورد
+                    {% else %}{{ user.role }}
+                    {% endif %}
+                </p>
+                <p class="mb-1"><strong>الحالة:</strong> 
+                    {% if user.is_active %}<span class="text-success">نشط</span>
+                    {% else %}<span class="text-danger">غير نشط</span>
+                    {% endif %}
+                </p>
+                <p class="mb-1"><strong>الراتب:</strong> 
+                    {% if user.salary is not none %}{{ user.salary }} جنيه
+                    {% else %}غير محدد
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card bg-syria-green text-white mb-3">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><i class="bi bi-people"></i> المصدرين</h5>
+                        <h2>{{ stats.exporters_count }}</h2>
+                        <a href="/exporters" class="text-white small">عرض المصدرين</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card bg-syria-black text-white mb-3">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><i class="bi bi-box"></i> المنتجات</h5>
+                        <h2>{{ stats.products_count }}</h2>
+                        <a href="/products" class="text-white small">عرض المنتجات</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card bg-syria-gold text-white mb-3">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><i class="bi bi-file-earmark-text"></i> التراخيص</h5>
+                        <h2>{{ stats.licenses_count }}</h2>
+                        <a href="/licenses" class="text-white small">إدارة التراخيص</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card bg-syria-green text-white mb-3">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><i class="bi bi-currency-exchange"></i> المعاملات المالية</h5>
+                        <h2>{{ stats.finance_count }}</h2>
+                        <a href="/finance" class="text-white small">عرض المعاملات</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

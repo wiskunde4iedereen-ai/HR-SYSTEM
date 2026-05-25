@@ -1,0 +1,55 @@
+:root {
+    --syria-green: #1a5632;
+    --syria-gold: #c8962e;
+    --syria-black: #1a1a1a;
+    --syria-green-light: #267a48;
+    --syria-gold-light: #daa940;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f0;
+}
+.navbar-brand {
+    font-weight: bold;
+}
+.navbar-syria {
+    background-color: var(--syria-green) !important;
+}
+.card {
+    border-radius: 10px;
+    border: none;
+}
+.card-header {
+    border-radius: 10px 10px 0 0 !important;
+}
+.table th {
+    background-color: #e8e8e0;
+}
+.btn {
+    border-radius: 5px;
+}
+.btn-gold {
+    background-color: var(--syria-gold);
+    border-color: var(--syria-gold);
+    color: #fff;
+}
+.btn-gold:hover {
+    background-color: var(--syria-gold-light);
+    border-color: var(--syria-gold-light);
+    color: #fff;
+}
+.bg-syria-green {
+    background-color: var(--syria-green) !important;
+}
+.bg-syria-gold {
+    background-color: var(--syria-gold) !important;
+}
+.bg-syria-black {
+    background-color: var(--syria-black) !important;
+}
+.text-syria-gold {
+    color: var(--syria-gold) !important;
+}
+.text-syria-green {
+    color: var(--syria-green) !important;
+}

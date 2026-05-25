@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: heya
+      MYSQL_USER: heya
+      MYSQL_PASSWORD: heya123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: mysql+pymysql://heya:heya123@db:3306/heya?charset=utf8mb4
+      SECRET_KEY: change-this-in-production-use-a-long-random-string
+    depends_on:
+      - db
+
+volumes:
+  mysql_data:

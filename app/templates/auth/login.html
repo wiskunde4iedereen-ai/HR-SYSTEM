@@ -1,0 +1,32 @@
+{% extends "layouts/base.html" %}
+{% block title %}تسجيل الدخول{% endblock %}
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-4">
+        <div class="card shadow">
+            <div class="card-header bg-syria-green text-white text-center">
+                <h4>تسجيل الدخول</h4>
+            </div>
+            <div class="card-body">
+                {% if error %}
+                <div class="alert alert-danger">{{ error }}</div>
+                {% endif %}
+                <form action="/auth/login" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">البريد الإلكتروني</label>
+                        <input type="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">كلمة المرور</label>
+                        <input type="password" name="password" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-gold w-100">دخول</button>
+                </form>
+                <p class="text-center mt-3">
+                    <a href="/auth/register">مستخدم جديد؟ سجل الآن</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

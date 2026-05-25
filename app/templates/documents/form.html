@@ -1,0 +1,26 @@
+{% extends "layouts/base.html" %}
+{% block title %}رفع مستند{% endblock %}
+{% block content %}
+<h4 class="mb-3">رفع مستند جديد</h4>
+<form method="post" enctype="multipart/form-data">
+  <div class="mb-2">
+    <label>الترخيص</label>
+    <select name="license_id" class="form-control" required>
+      <option value="">اختر...</option>
+      {% for l in licenses %}
+      <option value="{{ l.id }}">ترخيص #{{ l.id }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="mb-2">
+    <label>نوع المستند</label>
+    <input name="doc_type" class="form-control">
+  </div>
+  <div class="mb-2">
+    <label>الملف</label>
+    <input name="file" type="file" class="form-control" required>
+  </div>
+  <button type="submit" class="btn btn-primary">رفع</button>
+  <a href="/documents" class="btn btn-secondary">إلغاء</a>
+</form>
+{% endblock %}

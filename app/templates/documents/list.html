@@ -1,0 +1,26 @@
+{% extends "layouts/base.html" %}
+{% block title %}المستندات{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h4 class="mb-0">المستندات</h4>
+  <a href="/documents/upload" class="btn btn-primary">+ رفع مستند</a>
+</div>
+<table class="table table-striped">
+  <thead><tr><th>#</th><th>الترخيص</th><th>اسم الملف</th><th>النوع</th><th>تاريخ الرفع</th><th></th></tr></thead>
+  <tbody>
+    {% for d in docs %}
+    <tr>
+      <td>{{ d.id }}</td>
+      <td>{{ d.license_id }}</td>
+      <td>{{ d.filename }}</td>
+      <td>{{ d.doc_type }}</td>
+      <td>{{ d.uploaded_at.strftime('%Y-%m-%d') if d.uploaded_at else '' }}</td>
+      <td><a href="/documents/{{ d.id }}/download" class="btn btn-sm btn-info">تحميل</a></td>
+    </tr>
+    {% endfor %}
+    {% if not docs %}
+    <tr><td colspan="6" class="text-center">لا يوجد مستندات</td></tr>
+    {% endif %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "layouts/base.html" %}
+{% block title %}ترخيص جديد{% endblock %}
+{% block content %}
+<h4 class="mb-3">ترخيص جديد</h4>
+<form method="post">
+  <div class="mb-2">
+    <label>المنتج</label>
+    <select name="product_id" class="form-control" required>
+      <option value="">اختر...</option>
+      {% for p in products %}
+      <option value="{{ p.id }}">{{ p.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="mb-2">
+    <label>المصدر</label>
+    <select name="exporter_id" class="form-control" required>
+      <option value="">اختر...</option>
+      {% for e in exporters %}
+      <option value="{{ e.id }}">{{ e.company_name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="mb-2">
+    <label>السوق</label>
+    <select name="market_id" class="form-control" required>
+      <option value="">اختر...</option>
+      {% for m in markets %}
+      <option value="{{ m.id }}">{{ m.country }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="mb-2">
+    <label>ملاحظات</label>
+    <textarea name="notes" class="form-control"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">حفظ</button>
+  <a href="/licenses" class="btn btn-secondary">إلغاء</a>
+</form>
+{% endblock %}

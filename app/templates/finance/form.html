@@ -1,0 +1,35 @@
+{% extends "layouts/base.html" %}
+{% block title %}سجل مالي جديد{% endblock %}
+{% block content %}
+<h4 class="mb-3">سجل مالي جديد</h4>
+<form method="post">
+  <div class="mb-2">
+    <label>الترخيص</label>
+    <select name="license_id" class="form-control" required>
+      <option value="">اختر...</option>
+      {% for l in licenses %}
+      <option value="{{ l.id }}">ترخيص #{{ l.id }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="mb-2">
+    <label>المصدر</label>
+    <select name="exporter_id" class="form-control" required>
+      <option value="">اختر...</option>
+      {% for e in exporters %}
+      <option value="{{ e.id }}">{{ e.company_name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="mb-2">
+    <label>المبلغ</label>
+    <input name="amount" type="number" step="0.01" class="form-control" required>
+  </div>
+  <div class="mb-2">
+    <label>نوع الرسوم</label>
+    <input name="fee_type" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-primary">حفظ</button>
+  <a href="/finance" class="btn btn-secondary">إلغاء</a>
+</form>
+{% endblock %}

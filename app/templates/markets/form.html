@@ -1,0 +1,21 @@
+{% extends "layouts/base.html" %}
+{% block title %}{{ 'تعديل' if market else 'سوق جديد' }}{% endblock %}
+{% block content %}
+<h4 class="mb-3">{{ 'تعديل السوق' if market else 'سوق جديد' }}</h4>
+<form method="post">
+  <div class="mb-2">
+    <label>الدولة</label>
+    <input name="country" class="form-control" value="{{ market.country if market else '' }}" required>
+  </div>
+  <div class="mb-2">
+    <label>المدينة</label>
+    <input name="city" class="form-control" value="{{ market.city if market else '' }}">
+  </div>
+  <div class="mb-2">
+    <label>المتطلبات</label>
+    <textarea name="requirements" class="form-control">{{ market.requirements if market else '' }}</textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">حفظ</button>
+  <a href="/markets" class="btn btn-secondary">إلغاء</a>
+</form>
+{% endblock %}
